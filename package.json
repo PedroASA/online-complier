@@ -35,5 +35,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "bootstrap": "^4.6.0",
+    "codemirror": "^5.59.4",
+    "react-bootstrap": "^1.5.1",
+    "react-codemirror2": "^7.2.1"
   }
 }
