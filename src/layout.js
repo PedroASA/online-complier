@@ -30,7 +30,7 @@ export class MyNav extends React.Component {
                     <Navbar.Brand href="#home"> Online Editor </Navbar.Brand>
                     <Nav>
                         <Nav.Item>
-                            <Nav.Link onClick={this.handleChange} > Home  </Nav.Link>
+                            <Nav.Link id="home-link" onClick={this.handleChange} > Home  </Nav.Link>
                         </Nav.Item>
                         {/* <Nav.Link href="#features"> All Codes </Nav.Link>
                         <Nav.Link href="#pricing"> My Codes </Nav.Link> */}
