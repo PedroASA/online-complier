@@ -1,5 +1,5 @@
 import './App.css';
-import Editor from './Editor';
+import Editor from './editor';
 import {MyNav, Jumb} from './layout';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
@@ -30,7 +30,8 @@ class App extends React.Component {
           {this.state.show ?  
             <Jumb onBtnClick={ this.hide } />
           : 
-            <Editor className="Editor" message="// Type your code here" lang="js"/> }
+            <Editor mode='clike' />
+          }
           </header>
       </div>
     )

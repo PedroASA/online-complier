@@ -5,6 +5,8 @@ import {
   NavDropdown
 } from 'react-bootstrap'
 
+import modes from './modes';
+
 require('codemirror/lib/codemirror.css');
 require('codemirror/theme/material.css');
 require('codemirror/theme/neat.css');
@@ -14,59 +16,43 @@ require('codemirror/mode/css/css.js');
 require('codemirror/mode/clike/clike.js');
 
 
-const modes = {
-  1 : 'javascript',
-  2 : 'css',
-  3 : 'xml',
-  4 : 'clike'
-};
-
-const messages = {
-  1 : "// Type your code here!",
-  2 : '/* Style here! */',
-  3 : '<!-- Leave your marks here! -->',
-  4 : "// Type your code here!"
-};
-
-
 class Editor extends React.Component {
 
   constructor(props) {
     super(props);
+    const mode = this.props.mode || 'javascript';
     this.state = {
-      code: "// Type your code here!",
-      mode: "javascript"
+      mode: mode,
+      code: modes[mode]
     };
-    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.changeMode = this.changeMode.bind(this);
   }
 
-  handleChange = (val) => {
+  handleSubmit = (val) => {
     this.setState(() => ({
       code: val
     }));
+    // Submit Code.
   }
 
-  changeMode = (index) => {
+  changeMode = (mode_name) => {
+    console.log(mode_name);
     this.setState(() => ({
-      code: messages[index],
-      mode: modes[index]
+      code: modes[mode_name],
+      mode: mode_name
     }));
   }
-
 
   render() {
 
     return (
         <div id="Editor">
           <Nav className="justify-content-end">
-            <NavDropdown title="Language" id="nav-dropdown" activeKey="1" onSelect={this.changeMode} >
-              <NavDropdown.Item eventKey="1"> JavaScript </NavDropdown.Item>
-              <NavDropdown.Item eventKey="2"> CSS </NavDropdown.Item>
-              <NavDropdown.Item eventKey="3"> XML </NavDropdown.Item>
-              <NavDropdown.Item eventKey="4"> C </NavDropdown.Item>
-              <NavDropdown.Item eventKey="4"> C++ </NavDropdown.Item>
-              <NavDropdown.Item eventKey="4"> Java </NavDropdown.Item>
+            <NavDropdown title="Language" id="nav-dropdown" activekey={this.state.mode} onSelect={this.changeMode}>
+                {Object.keys(modes).map((mode) =>
+                    <NavDropdown.Item eventKey={mode} key={mode}> {mode} </NavDropdown.Item>
+                  )}
             </NavDropdown>
           </Nav>
             <CodeMirror
@@ -79,9 +65,6 @@ class Editor extends React.Component {
               scroll={{
                 x: 50,
                 y: 50
-              }}
-              onChange={(editor, data, value) => {
-                this.handleChange(value);
               }}
             />
         </div>
