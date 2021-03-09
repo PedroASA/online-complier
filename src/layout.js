@@ -1,8 +1,6 @@
 import React from 'react'
 import {
   Container,
-//   Form,
-//   FormControl,
   Navbar,
   Nav,
   Button,

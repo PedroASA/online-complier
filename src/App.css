@@ -89,3 +89,26 @@ div.CodeMirror {
   overflow-x: auto;
   overflow-y: hidden;
 }
+#submit-row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+#submit-row .submit-col  {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+#uncontrolled-tab-example {
+  margin-top: 20px;
+}
+
+.nav.nav-tabs {
+  margin-top: 20px;
+}
+
+.submit-col.col-3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
