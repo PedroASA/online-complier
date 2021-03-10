@@ -3,21 +3,10 @@ import {UnControlled as CodeMirror} from 'react-codemirror2';
 import {
   Nav,
   NavDropdown,
-  Button,
-  Row,
-  Col,
-  InputGroup,
-  Tab,
-  Tabs,
-  Form
 } from 'react-bootstrap'
 
+import {MyTab} from './layout';
 import modes from './modes';
-
-/*
-  - Lift Up State from MyTab to Editor
-  - Handle Code Submission
-*/
 
 require('codemirror/lib/codemirror.css');
 require('codemirror/theme/material.css');
@@ -34,15 +23,18 @@ class Editor extends React.Component {
     super(props);
     const mode = this.props.mode || 'javascript';
     this.state = {
-      mode: mode,
-      code: modes[mode]
+      mode   : mode,
+      code   : modes[mode],
+      stdIn  : "",
+      stdOut : "",
+      stdErr : ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.changeMode = this.changeMode.bind(this);
   }
 
   handleSubmit = () => {
-    fetch('https://run.mocky.io/v3/466b6d99-4871-46b9-9395-2bd4bb0c5c2c', {
+    fetch('https://run.mocky.io/v3/a8b03b63-9dce-4691-8b01-6211f7e8e2d5', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -54,7 +46,10 @@ class Editor extends React.Component {
     })
     .then(response => response.json())
     .then(data => {
-        console.log('Success:', data);
+      this.setState(() => ({
+        stdOut : data.stdOut,
+        stdErr : data.stdErr
+      }));
 
     })
     .catch((error) => {
@@ -74,7 +69,7 @@ class Editor extends React.Component {
     return (
         <div id="Editor">
           <Nav className="justify-content-end">
-            <NavDropdown title="Language" id="nav-dropdown" activekey={this.state.mode} onSelect={this.changeMode}>
+            <NavDropdown title="Language" id="nav-lang" activekey={this.state.mode} onSelect={this.changeMode}>
                 {Object.keys(modes).map((mode) =>
                     <NavDropdown.Item eventKey={mode} key={mode}> {mode} </NavDropdown.Item>
                   )}
@@ -92,61 +87,15 @@ class Editor extends React.Component {
                 y: 50
               }}
             />
-            <MyTab />
+            <MyTab onSubmit={ this.handleSubmit } 
+            stdOut={this.state.stdOut} 
+            stdErr={this.state.stdErr} 
+            defKey={this.state.stdErr ? "stderr" : this.state.stdOut ? "stdout" :"stdin"}  />
         </div>
     )
   }
 };
 
-
-function MyTab () {
-  return (
-    <Tabs defaultActiveKey="stdin" id="uncontrolled-tab-example">
-      <Tab eventKey="stdin" title="StdIn">
-        <Row id="submit-row">
-          <Col className="submit-col" xs={9}> 
-            <InputGroup>
-              <InputGroup.Prepend>
-                <InputGroup.Text> StdIn </InputGroup.Text>
-              </InputGroup.Prepend>
-              <Form.Control as="textarea" rows={5} />
-            </InputGroup>
-          </Col>
-            <Col className="submit-col" xs={3} > 
-              <Button 
-                  variant="primary" size="lg" 
-                  onClick={ this.handleSubmit } 
-                > Submit!</Button>
-            </Col>
-        </Row>
-      </Tab>
-      <Tab eventKey="stdout" title="StdOut">
-        <Row>
-          <Col className="submit-col" xs={12}> 
-            <InputGroup>
-              <InputGroup.Prepend>
-                <InputGroup.Text> StdOut </InputGroup.Text>
-              </InputGroup.Prepend>
-              <Form.Control as="textarea" rows={6} readOnly />
-            </InputGroup>
-          </Col>
-        </Row>
-      </Tab>
-      <Tab eventKey="stderr" title="StdErr" disabled>
-      <Row>
-        <Col className="submit-col" xs={12}> 
-          <InputGroup>
-            <InputGroup.Prepend>
-              <InputGroup.Text> StdOut </InputGroup.Text>
-            </InputGroup.Prepend>
-            <Form.Control as="textarea" rows={6} readOnly />
-          </InputGroup>
-        </Col>
-      </Row>
-    </Tab>
-  </Tabs>
-  )
-}
 
 
 
