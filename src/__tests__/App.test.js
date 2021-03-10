@@ -1,5 +1,5 @@
 import { act, render, screen } from '@testing-library/react';
-import App from './App';
+import App from '../App';
 
 document.createRange = () => {
     const range = new Range();
