@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Container,
   Navbar,
@@ -7,7 +7,11 @@ import {
   Image,
   Jumbotron,
   Col,
-  Row
+  Row,
+  Tabs,
+  Tab,
+  InputGroup,
+  Form
 } from 'react-bootstrap'
 
 
@@ -80,3 +84,64 @@ export class Jumb extends React.Component {
         )
     }
 };
+
+
+
+/*
+    Change active tab on submit.
+*/
+export function MyTab (props) {
+
+    const handleSubmit = () => 
+      props.onSubmit();
+    
+    const [key, setKey] = useState(props.defKey);  
+  
+    return (
+      <Tabs activeKey={key} onSelect={k => setKey(k)}>
+        <Tab eventKey="stdin" title="StdIn">
+          <Row id="submit-row">
+            <Col className="submit-col" xs={9}> 
+              <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text> StdIn </InputGroup.Text>
+                </InputGroup.Prepend>
+                <Form.Control as="textarea" rows={5} id="stdin"/>
+              </InputGroup>
+            </Col>
+              <Col className="submit-col" xs={3} > 
+                <Button 
+                    variant="primary" size="lg" 
+                    onClick={ handleSubmit } 
+                    id="submit-btn"
+                  > Submit!</Button>
+              </Col>
+          </Row>
+        </Tab>
+        <Tab eventKey="stdout" title="StdOut" disabled={!props.stdOut}>
+          <Row>
+            <Col className="submit-col" xs={12}> 
+              <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text> StdOut </InputGroup.Text>
+                </InputGroup.Prepend>
+                <Form.Control as="textarea" rows={6} readOnly value={props.stdOut} id="stdout"/>
+              </InputGroup>
+            </Col>
+          </Row>
+        </Tab>
+        <Tab eventKey="stderr" title="StdErr" disabled={!props.stdErr}>
+        <Row>
+          <Col className="submit-col" xs={12}> 
+            <InputGroup>
+              <InputGroup.Prepend>
+                <InputGroup.Text> StdErr </InputGroup.Text>
+              </InputGroup.Prepend>
+              <Form.Control as="textarea" rows={6} readOnly  value={props.stdErr} id="stderr"/>
+            </InputGroup>
+          </Col>
+        </Row>
+      </Tab>
+    </Tabs>
+    )
+  }
