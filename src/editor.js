@@ -11,10 +11,10 @@ import modes from './modes';
 require('codemirror/lib/codemirror.css');
 require('codemirror/theme/material.css');
 require('codemirror/theme/neat.css');
-require('codemirror/mode/xml/xml.js');
-require('codemirror/mode/javascript/javascript.js');
-require('codemirror/mode/css/css.js');
-require('codemirror/mode/clike/clike.js');
+require('codemirror/mode/xml/xml');
+require('codemirror/mode/javascript/javascript');
+require('codemirror/mode/css/css');
+require('codemirror/mode/clike/clike');
 
 
 class Editor extends React.Component {
@@ -34,15 +34,15 @@ class Editor extends React.Component {
   }
 
   handleSubmit = () => {
-    fetch('https://run.mocky.io/v3/a8b03b63-9dce-4691-8b01-6211f7e8e2d5', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: { code     : this.state.code, 
-                language : this.state.mode,
-                stdIn    : this.input
-              },
+    fetch('/test/', {
+        method: 'GET',
+        // // headers: {
+        // //   'Content-Type': 'application/json'
+        // // },
+        // body: { code     : this.state.code, 
+        //         language : this.state.mode,
+        //         stdIn    : this.input
+        //       }
     })
     .then(response => response.json())
     .then(data => {
