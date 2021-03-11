@@ -1,0 +1,25 @@
+{
+  "name": "compiler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd ./api && npm start",
+    "client": "cd ./client && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PedroASA/online-complier.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PedroASA/online-complier/issues"
+  },
+  "homepage": "https://github.com/PedroASA/online-complier#readme",
+  "devDependencies": {
+    "concurrently": "^6.0.0"
+  }
+}
