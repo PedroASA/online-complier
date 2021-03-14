@@ -15,7 +15,14 @@ router.get("/", function(req, res, next) {
     );
 });
 
-router.post("/", function(req, res, next) {
+router.post("/", function(req, res) {
+
+    let { error } = validateCourse(request.body);
+
+    if (error) {
+      response.status(400).send(error.details[0].message);
+    }
+
     res.send({
         language:"javascript",
         env:{

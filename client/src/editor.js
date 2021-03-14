@@ -35,14 +35,14 @@ class Editor extends React.Component {
 
   handleSubmit = () => {
     fetch('/test/', {
-        method: 'GET',
-        // // headers: {
-        // //   'Content-Type': 'application/json'
-        // // },
-        // body: { code     : this.state.code, 
-        //         language : this.state.mode,
-        //         stdIn    : this.input
-        //       }
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: { code     : this.state.code, 
+                language : this.state.mode,
+                stdIn    : this.input
+              }
     })
     .then(response => response.json())
     .then(data => {

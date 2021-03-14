@@ -2,4 +2,11 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  div
+  form(name="add-estimation", method="post")
+    div.input
+        input(type="text", name="mode")
+    div.input
+        textarea(name="code", cols="40", rows="15")
+    div.actions
+      input(type="submit", value="add")
