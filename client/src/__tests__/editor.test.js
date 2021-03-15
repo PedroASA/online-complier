@@ -53,26 +53,6 @@ Object.keys(modes).forEach(mode => {
 })
 
 
-/*
-  Assert 
-*/
-
-// it("Test Code Submission", () => {
-//   act(() => {
-//     render(<Editor /> , container);
-//   })
-//   const btn = document.querySelector("#submit-btn");
-//   expect(btn.innerHTML).toBe("Submit");
-
-//   act(() => {
-//     btn.dispatchEvent(new MouseEvent("click", { bubbles: true }));
-//   });
-//   const stdout = document.querySelector("#stdout");
-//   expect(stdout.textContent).toContain();
-// });
-
-
-
 it("renders response data", async () => {
   const fakeResponse = {
     language:"javascript",
