@@ -34,7 +34,7 @@ class Editor extends React.Component {
   }
 
   handleSubmit = () => {
-    fetch('/test/', {
+    fetch('/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
