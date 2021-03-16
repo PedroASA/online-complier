@@ -6,7 +6,13 @@ import {
 } from 'react-bootstrap'
 
 import {MyTab} from './layout';
-import modes from './modes';
+
+var modes;
+const res = fetch('/code')
+    .then(response => response.json())
+    .then(data => modes= data)
+    .catch(error => console.log(error));
+
 
 require('codemirror/lib/codemirror.css');
 require('codemirror/theme/material.css');
@@ -22,9 +28,10 @@ class Editor extends React.Component {
   constructor(props) {
     super(props);
     const mode = this.props.mode || 'javascript';
+    // getModes();
     this.state = {
       mode   : mode,
-      code   : modes[mode],
+      code   : modes[mode][0],
       stdIn  : "",
       stdOut : "",
       stdErr : ""
@@ -34,15 +41,17 @@ class Editor extends React.Component {
   }
 
   handleSubmit = () => {
-    fetch('/', {
+    fetch('/code', {
         method: 'POST',
         headers: {
+          'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-        body: { code     : this.state.code, 
-                language : this.state.mode,
-                stdIn    : this.input
-              }
+        body: JSON.stringify(
+          { code     : this.state.code, 
+            language : this.state.mode,
+            stdIn    : this.input
+          })
     })
     .then(response => response.json())
     .then(data => {
@@ -50,6 +59,7 @@ class Editor extends React.Component {
         stdOut : data.stdOut,
         stdErr : data.stdErr
       }));
+      console.log(data);
 
     })
     .catch((error) => {
@@ -59,7 +69,7 @@ class Editor extends React.Component {
 
   changeMode = (mode_name) => {
     this.setState(() => ({
-      code: modes[mode_name],
+      code: modes[mode_name][0],
       mode: mode_name
     }));
   };
@@ -86,6 +96,10 @@ class Editor extends React.Component {
                 x: 50,
                 y: 50
               }}
+              onChange={(editor, data, value) => 
+                this.setState(() => ({
+                  code: value,
+                }))}
             />
             <MyTab onSubmit={ this.handleSubmit } 
             stdOut={this.state.stdOut} 

@@ -30,7 +30,7 @@ class App extends React.Component {
           {this.state.show ?  
             <Jumb onBtnClick={ this.hide } />
           : 
-            <Editor mode='clike' />
+            <Editor />
           }
           </header>
       </div>
