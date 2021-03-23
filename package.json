@@ -6,7 +6,7 @@
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "node api/server.js",
-    "client": "npm start --prefix ./client/",
+    "client": "cd ./client/ && npm start",
     "test": "npm test --prefix ./client/"
   },
   "repository": {

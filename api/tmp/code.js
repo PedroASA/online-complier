@@ -1,3 +1,5 @@
 // Type your code here!
-console.log("Hello World!");
-//Another comment
+
+for(var i=0; i<10; i++) {
+  console.log(i);
+}

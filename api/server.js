@@ -10,11 +10,11 @@ modes = require('./modes.js');
 
 app.post('/code', (req, res) => {
   
-  const [out, err] = sh.run_code(req.body); 
-
+  const [out, err] = sh.run_code(req.body);
+  
   res.setHeader('Content-Type', 'application/json');
   res.send(JSON.stringify({
-    language:"javascript",
+    language:req.body.language,
     env:{
         os:"ubuntu 18.04",
         compiler:"nodejs 14.00"
