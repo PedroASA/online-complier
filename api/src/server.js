@@ -10,6 +10,12 @@ modes = require('./modes.js');
 
 app.post('/code', (req, res) => {
   
+
+  if(!req.body) 
+    res.send(JSON.stringify({
+      error : "No data was sent!"
+    }));
+
   const [out, err] = sh.run_code(req.body);
   
   res.setHeader('Content-Type', 'application/json');
