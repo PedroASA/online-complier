@@ -4,6 +4,7 @@ const inputFile = "./src/tmp/in.txt",
         execFile = './src/tmp/exec.exe',
         scripts = './src/scripts/',
         codeFile = './src/tmp/code';
+        // container = 'api-container';
 
 modes = require('./modes.js'),
 fs = require('fs');
@@ -40,8 +41,6 @@ module.exports.run_code = function (body) {
     // write to code file
     fs.writeFileSync(file, body.code, err => {if(err) console.log(err)});
 
-    // add in, out, err, exec.
     return run(`bash ./${scripts}/run-${extension}.bash`);
-
 
 };
