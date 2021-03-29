@@ -1,7 +1,9 @@
 #!/bin/bash
 
-$FILE='api/src/tmp/code.c'
+FILE="./src/tmp/code.c";
+IN="./src/tmp/in.txt";
+OUT="./src/tmp/out.txt";
+ERR="./src/tmp/err.txt";
+EXEC="./src/tmp/exec.exe"
 
-gcc $FILE -0 $4 > $2 2> $3;
-
-./$4 < $1;
+gcc $FILE -o $EXEC > $OUT 2> $ERR && ./$EXEC < $IN > $OUT 2> $ERR;

@@ -1,5 +1,8 @@
 #!/bin/bash
 
-$FILE="../tmp/exec.exe";
-pwd
-node $FILE < $1 > $2 2> $3;
+FILE="./src/tmp/code.js";
+IN="./src/tmp/in.txt";
+OUT="./src/tmp/out.txt";
+ERR="./src/tmp/err.txt";
+
+node $FILE < $IN > $OUT 2> $ERR;
