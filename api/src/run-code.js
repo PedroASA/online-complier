@@ -1,8 +1,9 @@
-const inputFile = "api/src/tmp/in.txt",
-        outputFile = "api/src/tmp/out.txt",
-        errorFile = "api/src/tmp/err.txt",
-        execFile = 'api/src/tmp/exec.exe',
-        scripts = 'api/src/scripts/';
+const inputFile = "./src/tmp/in.txt",
+        outputFile = "./src/tmp/out.txt",
+        errorFile = "./src/tmp/err.txt",
+        execFile = './src/tmp/exec.exe',
+        scripts = './src/scripts/',
+        codeFile = './src/tmp/code';
 
 modes = require('./modes.js'),
 fs = require('fs');
@@ -31,6 +32,8 @@ module.exports.run_code = function (body) {
     // write to input file.
     fs.writeFileSync(inputFile, (body.stdIn || ''), err => {if(err) console.log(err)});
 
+    // console.log(body, modes[body.language]);
+
     let extension = modes[body.language][1],
         file = `${codeFile}.${extension}`;
 
@@ -38,7 +41,7 @@ module.exports.run_code = function (body) {
     fs.writeFileSync(file, body.code, err => {if(err) console.log(err)});
 
     // add in, out, err, exec.
-    return run(`./${scripts}/run-${extension}.bash`);
+    return run(`bash ./${scripts}/run-${extension}.bash`);
 
 
 };
