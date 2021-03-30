@@ -1,26 +1,18 @@
 import React from 'react';
-import {UnControlled as CodeMirror} from 'react-codemirror2';
+
 import {
   Nav,
   NavDropdown,
 } from 'react-bootstrap'
 
 import {MyTab} from './layout';
+import MonacoEditor from 'react-monaco-editor';
 
 var modes;
 const res = fetch('/code')
     .then(response => response.json())
     .then(data => modes= data)
     .catch(error => console.log(error));
-
-
-require('codemirror/lib/codemirror.css');
-require('codemirror/theme/material.css');
-require('codemirror/theme/neat.css');
-require('codemirror/mode/xml/xml');
-require('codemirror/mode/javascript/javascript');
-require('codemirror/mode/css/css');
-require('codemirror/mode/clike/clike');
 
 
 class Editor extends React.Component {
@@ -76,6 +68,11 @@ class Editor extends React.Component {
 
   render() {
 
+    const code = this.state.code;
+    const options = {
+      selectOnLineNumbers: true
+    };
+
     return (
         <div id="Editor">
           <Nav className="justify-content-end">
@@ -85,22 +82,17 @@ class Editor extends React.Component {
                   )}
             </NavDropdown>
           </Nav>
-            <CodeMirror
-              value={this.state.code}
-              options={{
-                mode: this.state.mode,
-                theme: 'material',
-                lineNumbers: true
-              }}
-              scroll={{
-                x: 50,
-                y: 50
-              }}
-              onChange={(editor, data, value) => 
+            <MonacoEditor
+              language="javascript"
+              theme="vs-dark"
+              value={code}
+              options={options}
+              onChange={(value, e)  => 
                 this.setState(() => ({
                   code: value,
                 }))}
             />
+
             <MyTab onSubmit={ this.handleSubmit } 
             stdOut={this.state.stdOut} 
             stdErr={this.state.stdErr} 

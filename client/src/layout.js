@@ -101,7 +101,7 @@ export function MyTab (props) {
       <Tabs activeKey={key} onSelect={k => setKey(k)}>
         <Tab eventKey="stdin" title="StdIn">
           <Row id="submit-row">
-            <Col className="submit-col" xs={9}> 
+            <Col className="submit-col" sm={9}> 
               <InputGroup>
                 <InputGroup.Prepend>
                   <InputGroup.Text> StdIn </InputGroup.Text>
@@ -109,7 +109,7 @@ export function MyTab (props) {
                 <Form.Control as="textarea" rows={5} id="stdin"/>
               </InputGroup>
             </Col>
-              <Col className="submit-col" xs={3} > 
+              <Col className="submit-col" sm={3} > 
                 <Button 
                     variant="primary" size="lg" 
                     onClick={ handleSubmit } 

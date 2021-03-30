@@ -65,29 +65,19 @@
 }
 
  #Editor {
-  width: calc(100% - 100px);
-  min-height: 500px;
-  overflow: hidden;
+  width: 90%;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
   margin-top: 50px;
   margin-bottom: 50px;
 }
 
-.react-codemirror2 {
+.react-monaco-editor-container {
+  width: 100%;
+  min-width: 70vw;
   height: 100%;
-  min-height: 75vh;
-}
-
-
-div.CodeMirror {
-  min-height: 75vh;
-}
-
-/* Make editor resize to fit its content
- * see also https://codemirror.net/doc/manual.html#styling
- */
-.CodeMirror-scroll {
-  overflow-x: auto;
-  overflow-y: hidden;
+  min-height: 50vw;
 }
 #submit-row {
   margin-left: 0px;
@@ -107,7 +97,7 @@ div.CodeMirror {
   margin-top: 20px;
 }
 
-.submit-col.col-3 {
+.submit-col.col-sm-3 {
   display: flex;
   align-items: center;
   justify-content: center;
