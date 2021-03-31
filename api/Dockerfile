@@ -1,8 +1,9 @@
-# Ubuntu OS with node and npm installed.
+# Debian OS with node, npm and g++ installed.
 FROM node:12
 
 # Install GHC 
-# RUN npm install
+RUN apt-get update && apt-get install -y ghc ghc-prof ghc-doc
+
 
 
 WORKDIR /usr/src/app
