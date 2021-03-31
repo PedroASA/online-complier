@@ -24,3 +24,6 @@
 README.md
 **/src/tmp/*
 !**/src/tmp/README.md
+
+# production
+build/
