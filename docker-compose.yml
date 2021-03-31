@@ -4,6 +4,7 @@ services:
 
   api:
     build: ./api
+    image: compiler_api
     volumes:
       - ./api:/usr/src/app/
     ports:
@@ -11,6 +12,7 @@ services:
 
   client:
     build: ./client
+    image: compiler_client
     volumes:
       - ./client:/usr/src/app/
     ports:
