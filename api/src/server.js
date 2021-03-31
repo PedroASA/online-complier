@@ -2,13 +2,6 @@ const express = require('express')
 const app = express()
 const port = 9000
 
-
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "YOUR-DOMAIN.TLD"); // update to match the domain you will make the request from
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
-
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
@@ -25,7 +18,7 @@ app.post('/code', (req, res) => {
     res.status(400).json({
       error : "No code was sent."
     });
-  if(req.body.stdIn !== undefined) 
+  if(req.body.stdIn === undefined) 
     res.status(400).json({
       error : "No input was sent."
     });
@@ -37,7 +30,7 @@ app.post('/code', (req, res) => {
     language:req.body.language,
     env:{
         os:"ubuntu 18.04",
-        compiler:"nodejs 14.00"
+        compiler:"nodejs 12.00"
     },
     stdOut: out,
     stdErr: err
@@ -47,7 +40,7 @@ app.post('/code', (req, res) => {
 app.get('/code', (req, res) => {
     
     res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(modes) + "\n" + process.env.NODE_ENV);
+    res.send(JSON.stringify(modes));
 })
 
 app.listen(port, () => {
