@@ -88,7 +88,10 @@ export function MyTab (props) {
 
     const handleSubmit = () => 
       props.onSubmit();
-    
+      
+    const handleChange = e => 
+      props.onChange(e);
+
     const [key, setKey] = useState(props.defKey);
 
   
@@ -101,7 +104,7 @@ export function MyTab (props) {
                 <InputGroup.Prepend>
                   <InputGroup.Text> StdIn </InputGroup.Text>
                 </InputGroup.Prepend>
-                <Form.Control as="textarea" rows={5} id="stdin"/>
+                <Form.Control as="textarea" rows={5} id="stdin" onChange={ handleChange } />
               </InputGroup>
             </Col>
               <Col className="submit-col" sm={3} > 

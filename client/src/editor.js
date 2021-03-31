@@ -11,27 +11,17 @@ import {
 import {MyTab} from './layout';
 import MonacoEditor from 'react-monaco-editor';
 
-// var modes;
-// const res = fetch('/code')
-//     .then(response => response.json())
-//     .then(data => modes= data)
-//     .catch(error => console.log(error));
-var modes = {
-  'javascript' : ["// Type your code here!", 'js'],
-  'cpp'   : ["// Type your code here!", "cpp"],
-  'haskell' : ['-- Type your code here!', 'hs'],
-  'json'    : ['{\n\t"body" : {\n\n\t}\n}'],
-  'html'    : ['<!-- Leave your marks here! -->'],
-  'css'     : ['/* Style freely */'],
-  'markdown': ['### Title']
-};
+var modes;
+const res = fetch('/code')
+    .then(response => response.json())
+    .then(data => modes= data)
+    .catch(error => console.log(error));
 
 class Editor extends React.Component {
 
   constructor(props) {
     super(props);
     const mode = this.props.mode || 'javascript';
-    // getModes();
     this.state = {
       mode   : mode,
       code   : modes[mode][0],
@@ -54,7 +44,7 @@ class Editor extends React.Component {
         body: JSON.stringify(
           { code     : this.state.code, 
             language : this.state.mode,
-            stdIn    : this.input
+            stdIn    : this.state.stdIn
           })
     })
     .then(response => response.json())
@@ -106,6 +96,11 @@ class Editor extends React.Component {
             />
 
             <MyTab onSubmit={ this.handleSubmit } 
+            onChange= { e => {
+              this.setState(() => ({
+                stdIn: e.target.value
+              }))
+            } }
             disabled= {modes[this.state.mode].length == 1}
             stdOut={this.state.stdOut} 
             stdErr={this.state.stdErr} 
