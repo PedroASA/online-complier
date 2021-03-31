@@ -41,6 +41,6 @@ module.exports.run_code = function (body) {
     // write to code file
     fs.writeFileSync(file, body.code, err => {if(err) console.log(err)});
 
-    return run(`bash ./${scripts}/run-${extension}.bash`);
+    return run(`bash ${scripts}/run-${extension}.bash`);
 
 };
