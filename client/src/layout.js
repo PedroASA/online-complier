@@ -34,13 +34,7 @@ export class MyNav extends React.Component {
                         <Nav.Item>
                             <Nav.Link id="home-link" onClick={this.handleChange} > Home  </Nav.Link>
                         </Nav.Item>
-                        {/* <Nav.Link href="#features"> All Codes </Nav.Link>
-                        <Nav.Link href="#pricing"> My Codes </Nav.Link> */}
                     </Nav>
-                    {/* <Form inline>
-                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                        <Button variant="outline-info">Search</Button>
-                    </Form> */}
                 </Navbar>
                 </Row>
         )
@@ -95,7 +89,8 @@ export function MyTab (props) {
     const handleSubmit = () => 
       props.onSubmit();
     
-    const [key, setKey] = useState(props.defKey);  
+    const [key, setKey] = useState(props.defKey);
+
   
     return (
       <Tabs activeKey={key} onSelect={k => setKey(k)}>
@@ -114,6 +109,7 @@ export function MyTab (props) {
                     variant="primary" size="lg" 
                     onClick={ handleSubmit } 
                     id="submit-btn"
+                    disabled={props.disabled}
                   > Submit!</Button>
               </Col>
           </Row>
@@ -130,7 +126,7 @@ export function MyTab (props) {
             </Col>
           </Row>
         </Tab>
-        <Tab eventKey="stderr" title="StdErr" disabled={!props.stdErr}>
+        <Tab eventKey="stderr" title="StdErr" disabled={!props.stdErr}> 
         <Row>
           <Col className="submit-col" xs={12}> 
             <InputGroup>
