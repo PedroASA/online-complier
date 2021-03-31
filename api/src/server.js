@@ -17,9 +17,17 @@ modes = require('./modes.js');
 
 app.post('/code', (req, res) => {
 
-  if(!req.body) 
+  if(!req.body.language)
     res.status(400).json({
-      error : "No data was sent!"
+      error : "No language specification was sent."
+    });
+  if(!req.body.code) 
+    res.status(400).json({
+      error : "No code was sent."
+    });
+  if(req.body.stdIn !== undefined) 
+    res.status(400).json({
+      error : "No input was sent."
     });
 
   const [out, err] = sh.run_code(req.body);
@@ -37,9 +45,9 @@ app.post('/code', (req, res) => {
 })
 
 app.get('/code', (req, res) => {
-    console.log('Passed');
+    
     res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(modes));
+    res.send(JSON.stringify(modes) + "\n" + process.env.NODE_ENV);
 })
 
 app.listen(port, () => {
