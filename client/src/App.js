@@ -28,12 +28,9 @@ class App extends React.Component {
     return (
       <div className="App">
           <header className="App-header">
-          <MyNav onBtnClick={ this.show } />
-          {this.state.show ?  
-            <Jumb onBtnClick={ this.hide } />
-          : 
-            <Editor />
-          }
+          <MyNav onBtnClick={ this.show } /> 
+          <Jumb onBtnClick={ this.hide } />
+          {!this.state.show ? <Editor /> :  <span /> }
           </header>
       </div>
     )

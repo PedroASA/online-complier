@@ -1,30 +1,31 @@
 import React from 'react';
-
 import {
-  Button,
   Nav,
   NavDropdown,
   NavItem,
   NavLink
 } from 'react-bootstrap'
-
 import {MyTab} from './layout';
-import MonacoEditor from 'react-monaco-editor';
 
-var modes;
-const res = fetch('/code')
-    .then(response => response.json())
-    .then(data => modes= data)
-    .catch(error => console.log(error));
+import CodeMirror from '@uiw/react-codemirror';
+import 'codemirror/addon/display/autorefresh';
+import 'codemirror/addon/comment/comment';
+import 'codemirror/addon/edit/matchbrackets';
+import 'codemirror/keymap/sublime';
+import 'codemirror/theme/monokai.css';
 
+var modes = {
+  'javascript' : ['// Type your code here!', 'js']
+};
+  
 class Editor extends React.Component {
 
   constructor(props) {
+
     super(props);
-    const mode = this.props.mode || 'javascript';
     this.state = {
-      mode   : mode,
-      code   : modes[mode][0],
+      mode   : 'javascript',
+      code   : modes['javascript'][0],
       stdIn  : "",
       stdOut : "",
       stdErr : "",
@@ -32,6 +33,7 @@ class Editor extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.changeMode = this.changeMode.bind(this);
+
   }
 
   handleSubmit = () => {
@@ -69,11 +71,16 @@ class Editor extends React.Component {
     }));
   };
 
-  render() {
 
-    const options = {
-      selectOnLineNumbers: true
-    };
+  componentDidMount() {
+    fetch('/code')
+        .then(response => response.json())
+        .then(data => modes = data)
+        .catch(error => console.log(error));
+  }
+
+
+  render() {
 
     return (
         <div id="Editor">
@@ -84,24 +91,30 @@ class Editor extends React.Component {
                   )}
             </NavDropdown>
           </Nav>
-            <MonacoEditor
+          <div id="codeMirror-container">
+            <CodeMirror
               language={this.state.mode}
               theme="vs-dark"
               value={this.state.code}
-              options={options}
-              onChange={(value, e)  => 
-                this.setState(() => ({
-                  code: value,
-                }))}
+              options={{
+                theme: 'monokai',
+                tabSize: 4,
+                keyMap: 'sublime',
+                mode: 'jsx',
+              }}
+              // onChange={(value, e)  => 
+              //   this.setState(() => ({
+              //     code: value,
+              //   }))}
             />
-
+          </div>
             <MyTab onSubmit={ this.handleSubmit } 
             onChange= { e => {
               this.setState(() => ({
                 stdIn: e.target.value
               }))
             } }
-            disabled= {modes[this.state.mode].length == 1}
+            disabled= {modes[this.state.mode].length === 1}
             stdOut={this.state.stdOut} 
             stdErr={this.state.stdErr} 
             defKey={this.state.defKey}  />

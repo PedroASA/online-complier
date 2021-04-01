@@ -73,29 +73,24 @@
   margin-bottom: 50px;
 }
 
-.react-monaco-editor-container {
-  overflow: hidden;
-  min-width: 70vw;
-  min-height: 50vw;
+#codeMirror-container {
+  display: flex;
+  justify-content: center;
 }
 
-.monaco-editor {
-  min-width: 70vw;
-  min-height: 50vw;
-}
+  .CodeMirror-scroll {
+    min-height: 65vh;
+    max-height: 75vh;
+  }
 
-.overflow-guard {
-  min-width: 70vw;
-  min-height: 50vw;
-}
-
-.monaco-scrollable-element {
-  min-width: 70vw;
-  min-height: 50vw;
-}
-
-.editor-widget.suggest-widget.visible {
-  display: none;
+#codeMirror-container .CodeMirror {
+    min-height: 65vh;
+    max-height: 75vh;
+    max-width: 100%;
+    min-width: 100%;
+    position: relative;
+    z-index: 999;
+    overflow-y: hidden;
 }
 
 #submit-row {
@@ -109,7 +104,7 @@
 }
 
 #uncontrolled-tab-example {
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 .nav.nav-tabs {
