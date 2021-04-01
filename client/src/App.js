@@ -4,6 +4,8 @@ import {MyNav, Jumb} from './layout';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 
+// Testing only commited files.
+
 class App extends React.Component {
 
   constructor() {
