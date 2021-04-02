@@ -1,3 +1,11 @@
+/*
+  Editor Component.
+  Composed by a NavSelect, from which to choose language,
+  a CodeMirror editor
+  and a MyTab component.
+
+*/
+
 import React from 'react';
 import {
   Nav,
@@ -7,6 +15,7 @@ import {
 } from 'react-bootstrap'
 import {MyTab} from './layout';
 
+// import codemirror settings.
 import CodeMirror from '@uiw/react-codemirror';
 import 'codemirror/addon/display/autorefresh';
 import 'codemirror/addon/comment/comment';
@@ -14,28 +23,48 @@ import 'codemirror/addon/edit/matchbrackets';
 import 'codemirror/keymap/sublime';
 import 'codemirror/theme/monokai.css';
 
-var modes = {
-  'javascript' : ['// Type your code here!', 'js']
-};
   
 class Editor extends React.Component {
 
   constructor(props) {
 
+    // start modes with only a single language: javascript.
     super(props);
     this.state = {
+      modes  : {'javascript' : ['// Type your code here!', 'js']},
       mode   : 'javascript',
-      code   : modes['javascript'][0],
+      code   : '// Type your code here!',
       stdIn  : "",
       stdOut : "",
       stdErr : "",
       defKey : 'stdin'
     };
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.changeMode = this.changeMode.bind(this);
 
   }
 
+  // After the component has mounted, get all supported modes from the api.
+  componentDidMount() {
+    fetch('/code')
+        .then(response => response.json())
+        .then(data => {
+          if(data['javascript'])
+            this.setState(() => ({
+              modes : data
+            }));
+          else 
+            throw Error("Data receveid is not compatible with expected response.");
+        }
+        )
+        .catch(error => console.log(error));
+  }
+
+  /* 
+    Called when the #submit-btn is clicked. 
+    POST code in the api and update state with its response.
+  */
   handleSubmit = () => {
     fetch('/code', {
         method: 'POST',
@@ -56,7 +85,6 @@ class Editor extends React.Component {
         stdErr : data.stdErr,
         defKey : data.stdErr ? 'stderr' : data.stdOut ?  'stdout' : 'stdin'
       }));
-      console.log(data);
 
     })
     .catch((error) => {
@@ -64,19 +92,20 @@ class Editor extends React.Component {
     });
   };
 
+  // When the NavSelect value changes, update state.mode.
   changeMode = (mode_name) => {
     this.setState(() => ({
-      code: modes[mode_name][0],
+      code: this.state.modes[mode_name][0],
       mode: mode_name
     }));
   };
 
-
-  componentDidMount() {
-    fetch('/code')
-        .then(response => response.json())
-        .then(data => modes = data)
-        .catch(error => console.log(error));
+  // when code is type in the codeMirror editor, update state.code.
+  updateCode = editor => {
+    editor.save();
+    this.setState(() => ({
+      code: editor.getTextArea().value
+    }))
   }
 
 
@@ -86,8 +115,8 @@ class Editor extends React.Component {
         <div id="Editor">
           <Nav className="justify-content-center">
             <NavDropdown title="Language" as={NavItem} id="nav-lang" activekey={this.state.mode} onSelect={this.changeMode}>
-                {Object.keys(modes).map((mode) =>
-                    <NavDropdown.Item as={NavLink} eventKey={mode} key={mode}> {mode} </NavDropdown.Item>
+                {Object.keys(this.state.modes).map((mode) =>
+                    <NavDropdown.Item id={`link-${mode}`} as={NavLink} eventKey={mode} key={mode}> {mode} </NavDropdown.Item>
                   )}
             </NavDropdown>
           </Nav>
@@ -100,12 +129,9 @@ class Editor extends React.Component {
                 theme: 'monokai',
                 tabSize: 4,
                 keyMap: 'sublime',
-                mode: 'jsx',
+                mode: this.state.mode,
               }}
-              // onChange={(value, e)  => 
-              //   this.setState(() => ({
-              //     code: value,
-              //   }))}
+              onChange={this.updateCode.bind(this)}
             />
           </div>
             <MyTab onSubmit={ this.handleSubmit } 
@@ -114,7 +140,7 @@ class Editor extends React.Component {
                 stdIn: e.target.value
               }))
             } }
-            disabled= {modes[this.state.mode].length === 1}
+            disabled= {this.state.modes[this.state.mode].length === 1}
             stdOut={this.state.stdOut} 
             stdErr={this.state.stdErr} 
             defKey={this.state.defKey}  />
