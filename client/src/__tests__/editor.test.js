@@ -1,9 +1,13 @@
+/*
+    Unitary tests to the Editor Component.
+*/
+
 import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
 
 import Editor from "../editor";
-import modes from '../modes';
+
 
 let container = null;
 beforeEach(() => {
@@ -19,6 +23,7 @@ afterEach(() => {
   container = null;
 });
 
+// Avoid some bug with jest and create-react-app or codeMirror.
 document.createRange = () => {
   const range = new Range();
 
@@ -32,35 +37,27 @@ document.createRange = () => {
   return range;
 };
 
-/*
-  Assumes initial code to be one line long.
-*/
- 
+// Assert the initial message on the editor is the javascript one.
 it("renders with the right initial code", () => {
   act(() => {
     render(<Editor /> , container);
   })
-  expect(container.textContent).toContain("Language"+ modes['javascript']);
+  expect(container.textContent).toContain('// Type your code here!');
 });
 
-Object.keys(modes).forEach(mode => {
-  it(`renders with the right initial code: ${mode}`, () => {
-    act(() => {
-      render(<Editor mode={mode}/> , container);
-    })
-    expect(container.textContent).toContain(modes[mode]);
-  });
-})
-
-
+/* 
+  Assert MyTabs renders the right texts after
+  receving the mocked response as a code submission response.
+*/
 it("renders response data", async () => {
+
   const fakeResponse = {
     language:"javascript",
     env:{
         os:"ubuntu 18.04",
-        compiler:"nodejs 14.00"
+        compiler:"nodejs 12.00"
     },
-    stdOut:"Hello World!",
+    stdOut:"Hello",
     stdErr:""
   };
   jest.spyOn(global, "fetch").mockImplementation(() =>
@@ -71,14 +68,24 @@ it("renders response data", async () => {
 
   // Use the asynchronous version of act to apply resolved promises
   await act( async () => {
-    render(<Editor mode="javascript"/>, container);
+    render(<Editor />, container);
     const btn = document.querySelector("#submit-btn");
     btn.dispatchEvent(new MouseEvent("click", { bubbles: true }));
   });
 
-  expect(container.querySelector("#stdout").textContent).toBe(fakeResponse.stdOut);
-  expect(container.querySelector("#stderr").textContent).toBe(fakeResponse.stdErr);
+  const tabs = container.querySelectorAll(".nav-item.nav-link");
+  expect(tabs[0].classList).toContain('active');
+  expect(container.querySelector("#stdout").value).toBe(fakeResponse.stdOut);
+  expect(tabs[1].classList).not.toContain('disabled');
+  expect(container.querySelector("#stderr").value).toBe(fakeResponse.stdErr);
+  expect(tabs[2].classList).toContain('disabled');
   expect(container.querySelector(".nav-item.dropdown").getAttribute('activeKey')).toBe(fakeResponse.language);
+
+  tabs[1].dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  expect(tabs[1].classList).toContain('active');
+
+  tabs[2].dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  expect(tabs[2].classList).not.toContain('active');
 
   // remove the mock to ensure tests are completely isolated
   global.fetch.mockRestore();
