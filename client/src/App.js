@@ -1,40 +1,27 @@
+/*
+  Component that contains the entire application.
+  Implements the logic of hiding and showing the Editor.
+*/
+
 import './App.css';
 import Editor from './editor';
 import {MyNav, Jumb} from './layout';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
+import React, { useState } from 'react';
 
-// Testing only commited files.
+function App (props) {
 
-class App extends React.Component {
+  const [show, setShow] = useState(false);
 
-  constructor() {
-    super();
-    this.state = {
-      show: true
-    };
-    this.show = this.show.bind(this);
-  }
-
-  show = () => {
-    this.setState({ show: true });
-  }
-
-  hide = () => {
-    this.setState({ show: false });
-  }
-
-  render () {
-    return (
-      <div className="App">
-          <header className="App-header">
-          <MyNav onBtnClick={ this.show } /> 
-          <Jumb onBtnClick={ this.hide } />
-          {!this.state.show ? <Editor /> :  <span /> }
-          </header>
-      </div>
-    )
-  }
+  return (
+    <div className="App">
+        <header className="App-header">
+        <MyNav onBtnClick={ () => setShow(false) } /> 
+        <Jumb onBtnClick={ () => setShow(true) } />
+        {show ?  <Editor /> :  <span /> }
+        </header>
+    </div>
+  )
 };
 
 export default App;
