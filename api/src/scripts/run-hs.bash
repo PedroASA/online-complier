@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Compile and execute code.hs
+
 FILE="./src/tmp/code.hs";
 IN="./src/tmp/in.txt";
 OUT="./src/tmp/out.txt";

@@ -1,3 +1,10 @@
+/*
+
+All currently supported codemirror modes and their 
+initial code (and possibly file extension).
+
+*/
+
 const modes = {
     'javascript' : ["// Type your code here!", 'js'],
     'cpp'   : ["// Type your code here!", "cpp"],

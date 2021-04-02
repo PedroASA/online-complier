@@ -1,3 +1,8 @@
+/*
+  Exports MyNav, Jumb and MyTab.
+  Three layout components.
+*/
+
 import React, { useState } from 'react'
 import {
   Container,
@@ -16,7 +21,7 @@ import {
 
 
 
-
+// A navbar that sticks on the top of the window.
 export class MyNav extends React.Component {
     
     constructor (props) {
@@ -41,6 +46,7 @@ export class MyNav extends React.Component {
     }
 };
 
+// A jumbotron to quickly present the app.  
 export class Jumb extends React.Component {
     
     constructor (props) {
@@ -82,8 +88,9 @@ export class Jumb extends React.Component {
 
 
 /*
-    Change active tab on submit.
+  TODO:  Change active tab on submit.
 */
+// A tab that switches between stdin, stdout and stderr. 
 export function MyTab (props) {
 
     const handleSubmit = () => 

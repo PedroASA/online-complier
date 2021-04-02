@@ -1,22 +1,28 @@
+/*
+    Run code from given body information such as 
+    body.stdIn, body.code, body.language, etc.
+*/
+
+// path to /tmp/ folder its files' names
 const inputFile = "./src/tmp/in.txt",
         outputFile = "./src/tmp/out.txt",
         errorFile = "./src/tmp/err.txt",
         execFile = './src/tmp/exec.exe',
         scripts = './src/scripts/',
         codeFile = './src/tmp/code';
-        // container = 'api-container';
 
+// currently supported modes.
 modes = require('./modes.js'),
+// write to and read from files.
 fs = require('fs');
 
+// run commands on terminal.
 const execSync = require('child_process').execSync;
 
+// execute given command and return its stdout and stderr.
 const run = (cmd) => {
     try {
-        
         execSync(cmd);
-        // execSync('docker container exec -it magical_williams bash');
-        // execSync('exit');
     } 
     catch (error) {
         console.log(error);
@@ -28,6 +34,11 @@ const run = (cmd) => {
     }
 };
 
+/* 
+    write body.stdin to /tmp/in.txt and body.code
+    to /tmp/code.<<language extension>> and run the 
+    appropriate script file.
+*/
 module.exports.run_code = function (body) {
 
     // write to input file.

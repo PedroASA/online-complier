@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Compile and execute code.cpp
+
 FILE="./src/tmp/code.cpp";
 IN="./src/tmp/in.txt";
 OUT="./src/tmp/out.txt";
