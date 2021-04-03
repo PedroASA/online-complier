@@ -65,30 +65,34 @@
 }
 
  #Editor {
-  width: calc(100% - 100px);
-  min-height: 500px;
-  overflow: hidden;
+  width: 90%;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
   margin-top: 50px;
   margin-bottom: 50px;
 }
 
-.react-codemirror2 {
-  height: 100%;
-  min-height: 75vh;
+#codeMirror-container {
+  display: flex;
+  justify-content: center;
 }
 
+  .CodeMirror-scroll {
+    min-height: 65vh;
+    max-height: 75vh;
+  }
 
-div.CodeMirror {
-  min-height: 75vh;
+#codeMirror-container .CodeMirror {
+    min-height: 65vh;
+    max-height: 75vh;
+    max-width: 100%;
+    min-width: 100%;
+    position: relative;
+    z-index: 999;
+    overflow-y: hidden;
 }
 
-/* Make editor resize to fit its content
- * see also https://codemirror.net/doc/manual.html#styling
- */
-.CodeMirror-scroll {
-  overflow-x: auto;
-  overflow-y: hidden;
-}
 #submit-row {
   margin-left: 0px;
   margin-right: 0px;
@@ -100,14 +104,14 @@ div.CodeMirror {
 }
 
 #uncontrolled-tab-example {
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 .nav.nav-tabs {
   margin-top: 20px;
 }
 
-.submit-col.col-3 {
+.submit-col.col-sm-3 {
   display: flex;
   align-items: center;
   justify-content: center;

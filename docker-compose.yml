@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+
+  api:
+    build: ./api
+    image: compiler_api
+    volumes:
+      - ./api:/usr/src/app/
+    ports:
+      - 9000:9000
+
+  client:
+    build: ./client
+    image: compiler_client
+    environment: 
+      - REACT_APP_API_URL=http://api:9000
+    volumes:
+      - ./client:/usr/src/app/
+    ports:
+      - 3000:3000
+    depends_on: 
+      - api
+  

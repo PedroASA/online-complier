@@ -1,3 +1,8 @@
+/*
+  Exports MyNav, Jumb and MyTab.
+  Three layout components.
+*/
+
 import React, { useState } from 'react'
 import {
   Container,
@@ -16,7 +21,7 @@ import {
 
 
 
-
+// A navbar that sticks on the top of the window.
 export class MyNav extends React.Component {
     
     constructor (props) {
@@ -34,19 +39,14 @@ export class MyNav extends React.Component {
                         <Nav.Item>
                             <Nav.Link id="home-link" onClick={this.handleChange} > Home  </Nav.Link>
                         </Nav.Item>
-                        {/* <Nav.Link href="#features"> All Codes </Nav.Link>
-                        <Nav.Link href="#pricing"> My Codes </Nav.Link> */}
                     </Nav>
-                    {/* <Form inline>
-                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                        <Button variant="outline-info">Search</Button>
-                    </Form> */}
                 </Navbar>
                 </Row>
         )
     }
 };
 
+// A jumbotron to quickly present the app.  
 export class Jumb extends React.Component {
     
     constructor (props) {
@@ -88,32 +88,38 @@ export class Jumb extends React.Component {
 
 
 /*
-    Change active tab on submit.
+  TODO:  Change active tab on submit.
 */
+// A tab that switches between stdin, stdout and stderr. 
 export function MyTab (props) {
 
     const handleSubmit = () => 
       props.onSubmit();
-    
-    const [key, setKey] = useState(props.defKey);  
+      
+    const handleChange = e => 
+      props.onChange(e);
+
+    const [key, setKey] = useState(props.defKey);
+
   
     return (
       <Tabs activeKey={key} onSelect={k => setKey(k)}>
         <Tab eventKey="stdin" title="StdIn">
           <Row id="submit-row">
-            <Col className="submit-col" xs={9}> 
+            <Col className="submit-col" sm={9}> 
               <InputGroup>
                 <InputGroup.Prepend>
                   <InputGroup.Text> StdIn </InputGroup.Text>
                 </InputGroup.Prepend>
-                <Form.Control as="textarea" rows={5} id="stdin"/>
+                <Form.Control as="textarea" rows={5} id="stdin" onChange={ handleChange } />
               </InputGroup>
             </Col>
-              <Col className="submit-col" xs={3} > 
+              <Col className="submit-col" sm={3} > 
                 <Button 
                     variant="primary" size="lg" 
                     onClick={ handleSubmit } 
                     id="submit-btn"
+                    disabled={props.disabled}
                   > Submit!</Button>
               </Col>
           </Row>
@@ -130,7 +136,7 @@ export function MyTab (props) {
             </Col>
           </Row>
         </Tab>
-        <Tab eventKey="stderr" title="StdErr" disabled={!props.stdErr}>
+        <Tab eventKey="stderr" title="StdErr" disabled={!props.stdErr}> 
         <Row>
           <Col className="submit-col" xs={12}> 
             <InputGroup>
