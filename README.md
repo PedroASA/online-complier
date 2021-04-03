@@ -1,7 +1,7 @@
 # online-complier
 An online complier and editor for programming languages.
 
-### Supported Languages:
+### Supported Languages
 
 * Javascript
 * C++
@@ -10,3 +10,18 @@ An online complier and editor for programming languages.
 * CSS (editor only)
 * HTML (editor only)
 * Markdown (editor only)
+
+
+## About the implementation (TODO) ❌
+
+- ### React
+
+- ### Express
+
+- ### Docker
+
+- ### Testing
+  * **Jest**
+  * **Cypress**
+
+#### 
