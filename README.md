@@ -16,7 +16,7 @@ An online complier and editor for programming languages.
 - #### Docker (version 20.10.5) (TODO: Test other versions) ❌
 - #### docker-compose (version 1.28.0 or higher)
 
-## Running
+### Running
 
 ```
 docker-compose up
