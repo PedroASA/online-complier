@@ -7,7 +7,6 @@
 const inputFile = "./src/tmp/in.txt",
         outputFile = "./src/tmp/out.txt",
         errorFile = "./src/tmp/err.txt",
-        execFile = './src/tmp/exec.exe',
         scripts = './src/scripts/',
         codeFile = './src/tmp/code';
 
@@ -24,9 +23,6 @@ const run = (cmd) => {
     try {
         execSync(cmd);
     } 
-    catch (error) {
-        console.log(error);
-    }
     finally {        
         const out = fs.readFileSync(outputFile, err => {if(err) console.log(err)}).toString(), 
               err = fs.readFileSync(errorFile, err => {if(err) console.log(err)}).toString();
