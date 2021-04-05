@@ -1,0 +1,7 @@
+{
+    "language": "javascript",
+    "code": "var fs = require('fs');var data = fs.readFileSync(0, 'utf-8');console.log(`Hello, ${data}`);",
+    "stdIn": "Pedro",
+    "expected_stdout" : "Hello, Pedro\n",
+    "expected_stderr" : ""
+}

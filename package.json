@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "install": "npm run install_client",
-    "start": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "node api/src/server.js",
+    "start": "echo 'Run docker-compose up'",
+    "server": "cd api && npm start",
     "client": "cd ./client/ && npm start",
-    "test_client" : "cd ./client/ && npm test -- --watchAll=false",
+    "test_client": "cd ./client/ && npm test -- --watchAll=false",
     "test": "npm run test_client",
-    "install_client" : "cd client && npm ci"
+    "install_client": "cd client && npm ci"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,6 @@
   "homepage": "https://github.com/PedroASA/online-complier#readme",
   "devDependencies": {
     "concurrently": "^6.0.0",
-    "express": "^4.17.1"
+    "cypress": "^6.8.0"
   }
 }

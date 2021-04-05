@@ -1,0 +1,7 @@
+{
+    "language": "haskell",
+    "code": "dfjkbhdfbdfb",
+    "stdIn": "",
+    "expected_stdout" : "[1 of 1] Compiling Main             ( src/tmp/code.hs, src/tmp/code.o )\n",
+    "expected_stderr" : "error"
+}
