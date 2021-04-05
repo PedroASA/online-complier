@@ -33,7 +33,7 @@ docker-compose up
 <hr>
 
 ```
-docker-compose --profile test --abort-on-container-exit up
+docker-compose --profile test up --abort-on-container-exit
 ```
 <br>
 
