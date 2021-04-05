@@ -1,0 +1,21 @@
+# action.yml
+name: 'Docker Test'
+description: 'E2E testing'
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run Test with docker
+        - run: docker-compose --profile test up --abort-on-container-exit
+     
