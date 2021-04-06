@@ -34,10 +34,6 @@ Cypress.Commands.add('run_code', fix => {
         .then((editor) => {
           editor[0].CodeMirror.setValue(data.code);
         });
-        // cy.get('.CodeMirror')
-        // .then((editor) => {
-        //     expect(editor[0].CodeMirror.value).to.contain(data.code)
-        // });
 
         // write stdIn
         if(data.stdIn) {
@@ -52,7 +48,7 @@ Cypress.Commands.add('run_code', fix => {
         cy.get('#submit-btn')
         .click();
 
-        cy.wait(1000);
+        cy.wait(2000);
 
         // get stdout
         if(data.expected_stdout) {
