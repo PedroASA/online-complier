@@ -25,10 +25,6 @@ describe('Test compiler behavior: haskell', () => {
     it("Check stdout and stderr: example-code-hs-comment", () => {
         cy.run_code('example-code-hs-comment');
     });
-    // Unstable
-    it("Check stdout and stderr: example-code-hs-stdout", () => {
-        cy.run_code('example-code-hs-stdout');
-    });
     it("Check stdout and stderr: example-code-hs-stdout-stderr", () => {
         cy.run_code('example-code-hs-stdout-stderr');
     });
@@ -37,6 +33,10 @@ describe('Test compiler behavior: haskell', () => {
     });
     it("Check stdout and stderr: example-code-hs-stdin", () => {
         cy.run_code('example-code-hs-stdin');
+    });
+    // Unstable
+    it("Check stdout and stderr: example-code-hs-stdout", () => {
+        cy.run_code('example-code-hs-stdout');
     });
     
 })
