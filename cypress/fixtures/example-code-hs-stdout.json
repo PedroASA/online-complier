@@ -2,6 +2,6 @@
     "language": "haskell",
     "code": "main = putStrLn \"Hello World\"",
     "stdIn": "",
-    "expected_stdout" : "Hello World\n",
+    "expected_stdout" : "Hello World",
     "expected_stderr" : ""
 }
