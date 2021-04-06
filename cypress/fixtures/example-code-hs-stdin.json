@@ -1,0 +1,7 @@
+{
+    "language": "haskell",
+    "code": "main = interact f where f s = \"Hello, \" ++ s",
+    "stdIn": "Pedro",
+    "expected_stdout" : "Hello, Pedro",
+    "expected_stderr" : ""
+}

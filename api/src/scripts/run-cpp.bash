@@ -8,4 +8,5 @@ OUT="./src/tmp/out.txt";
 ERR="./src/tmp/err.txt";
 EXEC="./src/tmp/exec.exe"
 
-g++ $FILE -o $EXEC > $OUT 2> $ERR && ./$EXEC < $IN > $OUT 2> $ERR;
+> $OUT;
+g++ $FILE -o $EXEC 2> $ERR && ./$EXEC < $IN > $OUT 2> $ERR;

@@ -1,0 +1,7 @@
+{
+    "language": "cpp",
+    "code": "#include <iostream>\n int main() {std::cout << \"Hello World\" << std::endl;return 0;asdasd}",
+    "stdIn": "",
+    "expected_stdout" : "",
+    "expected_stderr" : "error"
+}

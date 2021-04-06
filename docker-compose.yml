@@ -5,8 +5,10 @@ services:
   api:
     build: ./api
     image: compiler_api
-    volumes:
-      - ./api:/usr/src/app/
+    environment: 
+      - ROOT=/usr/src/app/
+    # volumes:
+    #   - ./api:/usr/src/app/
     ports:
       - 9000:9000
 
@@ -15,10 +17,23 @@ services:
     image: compiler_client
     environment: 
       - REACT_APP_API_URL=http://api:9000
-    volumes:
-      - ./client:/usr/src/app/
+    # volumes:
+    #   - ./client:/usr/src/app/
     ports:
       - 3000:3000
     depends_on: 
       - api
-  
+
+  test:
+    image: "cypress/included:3.2.0"
+    environment: 
+      - CYPRESS_api_url=http://api:9000/
+      - CYPRESS_client_url=http://client:3000/
+    working_dir: /e2e
+    volumes:
+      - ./:/e2e
+    profiles:
+      - test
+    depends_on: 
+      - api
+      - client

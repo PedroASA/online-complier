@@ -1,0 +1,7 @@
+{
+    "language": "haskell",
+    "code": "main = putStrLn \"Hello Again\"asdasd",
+    "stdIn": "",
+    "expected_stdout" : "",
+    "expected_stderr" : "error"
+}
