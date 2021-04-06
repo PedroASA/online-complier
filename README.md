@@ -29,7 +29,7 @@ docker-compose up
 ```
 <br>
 
-### Testing(End-2-End) (TODO) ❌
+### Testing(End-2-End)
 <hr>
 
 ```
