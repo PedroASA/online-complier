@@ -11,31 +11,24 @@ An online complier and editor for programming languages.
 * HTML (editor only)
 * Markdown (editor only)
 
-<br>
 
-### System Requirements
-<hr>
+## System Requirements
 
 - #### Docker (version 20.10.5) (_TODO:_ Test other versions)
 - #### docker-compose (version 1.28.0 or higher)
 
-<br>
 
-### Running
-<hr>
+## Running
 
 ```
 docker-compose up
 ```
-<br>
 
-### Testing(End-2-End)
-<hr>
+## Testing(End-2-End)
 
 ```
 docker-compose --profile test up --abort-on-container-exit
 ```
-<br>
 
 ## About the implementation
 
