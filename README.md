@@ -1,10 +1,8 @@
 # online-complier
 
-<img align="right" src="sample.gif">
+<img align="right" src="sample.gif" height="400px">
 
   An online complier and editor for programming languages.
-<br>
-<br>
 
 
 ### Supported Languages
@@ -16,8 +14,6 @@
 * CSS (editor only)
 * HTML (editor only)
 * Markdown (editor only)
-
-<br>
 
 ## System Requirements
 
