@@ -20,6 +20,10 @@ document.createRange = () => {
     return range;
 };
 
+// Jest doesnt reckognize scrollIntoView function.
+let scrollIntoViewMock = jest.fn();
+window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
+
 /* 
     A function that returns a test to simulate a click in the Home Link 
     on the navbar and assert it remains in the document.
@@ -35,6 +39,8 @@ const homeLinkClick = (name) =>
             });
             const btn = screen.getByText(/Start Coding/i);
             expect(btn).toBeInTheDocument();
+            expect(scrollIntoViewMock).toBeCalled();
+
         }
     );
 
@@ -58,6 +64,8 @@ test('Changes Page on Button Click',
     });
     expect(document.querySelector('#home-link')).toBeInTheDocument();
     expect(document.querySelector('#Editor')).toBeInTheDocument();
+    expect(scrollIntoViewMock).toBeCalled();
+
 });
 
 
