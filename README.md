@@ -1,6 +1,6 @@
 # online-complier
 
-<img align="right" src="sample.gif" height="400px">
+<img align="right" src="sample.gif" height="375px">
 
   An online complier and editor for programming languages.
 
@@ -14,6 +14,8 @@
 * CSS (editor only)
 * HTML (editor only)
 * Markdown (editor only)
+
+<br>
 
 ## System Requirements
 
