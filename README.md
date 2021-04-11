@@ -1,6 +1,12 @@
 # online-complier
-An online complier and editor for programming languages.
+
+<img align="right" src="https://media.giphy.com/media/5Gjsk5OPP5NS3GgMTH/giphy.gif">
+
+  An online complier and editor for programming languages.
 <br>
+<br>
+
+
 ### Supported Languages
 
 * Javascript
