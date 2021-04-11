@@ -1,6 +1,6 @@
 # online-complier
 
-<img align="right" src="https://media.giphy.com/media/5Gjsk5OPP5NS3GgMTH/giphy.gif">
+<img align="right" src="sample.gif">
 
   An online complier and editor for programming languages.
 <br>
