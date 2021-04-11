@@ -1,5 +1,8 @@
 # online-complier
 
+[![Docker Test](https://github.com/PedroASA/online-complier/actions/workflows/docker-test.yml/badge.svg)](https://github.com/PedroASA/online-complier/actions/workflows/docker-test.yml)
+[![Node.js CI](https://github.com/PedroASA/online-complier/actions/workflows/node.js.yml/badge.svg)](https://github.com/PedroASA/online-complier/actions/workflows/node.js.yml)
+
 <img align="right" src="sample.gif" height="375px">
 
   An online complier and editor for programming languages.
