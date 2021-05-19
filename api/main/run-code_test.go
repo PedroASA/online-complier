@@ -46,8 +46,8 @@ func TestRun2(t *testing.T) {
 
 	body := ioutil.NopCloser(strings.NewReader(
 		`{
-				"language": "javascript",
-				"code": "console.log(\"Hello\");",
+				"language": "cpp",
+				"code": "#include <iostream>\nint main() {std::cout << \"Hello\" << std::endl;return 0;}",
 				"stdIn": ""
 			}`))
 
@@ -58,10 +58,10 @@ func TestRun2(t *testing.T) {
 	if err != nil {
 		t.Errorf("An unexpected error was raised:\n %v\n %T", err, err)
 	} else {
-		if diff := cmp.Diff(stdout, want_stdout); diff != "" {
+		if diff := cmp.Diff(want_stdout, stdout); diff != "" {
 			t.Errorf("Stdout mismatch (-want +got):\n%s", diff)
 		}
-		if diff := cmp.Diff(stderr, want_stderr); diff != "" {
+		if diff := cmp.Diff(want_stderr, stderr); diff != "" {
 			t.Errorf("Stderr mismatch (-want +got):\n%s", diff)
 		}
 	}
