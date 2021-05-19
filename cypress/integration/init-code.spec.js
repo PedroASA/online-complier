@@ -2,8 +2,8 @@ var modes;
 
 describe('Test Editor renders the right initial message and toggles submission button', () => {
     // Render Editor and GET modes.
-    before(() => {
-        cy.visit(Cypress.env('client_url'));
+    before( () => {
+        cy.visit(Cypress.env('client_url'), { timeout: 30000 });
         cy.contains('Start Coding!')
         .click();
         const api_url = `${Cypress.env('api_url')}code`;
@@ -13,7 +13,8 @@ describe('Test Editor renders the right initial message and toggles submission b
             headers: {
                 'accept': 'application/json'
             }
-        }).its('body').then(res => modes = res);
+        }).its('body').then(res => modes = JSON.parse(res));
+        console.log(modes);
     })
     // Make languages select option visible.
     beforeEach(() => {

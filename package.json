@@ -6,7 +6,6 @@
   "scripts": {
     "install": "npm run install_client",
     "start": "echo 'Run docker-compose up' && exit 1",
-    "server": "cd api && npm start",
     "client": "cd ./client/ && npm start",
     "test_client": "cd ./client/ && npm test -- --watchAll=false",
     "test": "npm run test_client",

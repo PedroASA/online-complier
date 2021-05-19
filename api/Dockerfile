@@ -1,16 +1,28 @@
-# Debian OS with node, npm and g++ installed.
-FROM node:12
+# Debian OS with go and g++ installed.
+FROM golang:1.14
 
 # Install GHC 
 RUN apt-get update && apt-get install -y ghc ghc-prof ghc-doc
 
+# Install node12
+RUN curl -fsSL https://deb.nodesource.com/setup_12.x | bash -
+RUN apt-get install -y nodejs
 
 
-WORKDIR /usr/src/app
-COPY package*.json ./
-RUN npm install
+WORKDIR /go/src/app
 
 COPY . .
-ENV PORT=9000
+
+WORKDIR /go/src/app/main
+
+RUN go mod download
+
+RUN go build -o main .
+
+# Export necessary port
 EXPOSE 9000
-CMD ["npm", "start"]
+
+# Command to run when starting the container
+CMD ["/go/src/app/main/main"]
+
+
