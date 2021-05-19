@@ -20,8 +20,8 @@ jobs:
 
     - name: Build
       working-directory: ./api/main
-      run: go build -v ./...
+      run: go build -v .
 
     - name: Test
       working-directory: ./api/main
-      run: go test -v ./...
+      run: go test -v .
