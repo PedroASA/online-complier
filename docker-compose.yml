@@ -19,8 +19,6 @@ services:
   api:
     build: ./api
     image: compiler_api
-    # environment: 
-    #   - ROOT=/usr/src/app/
     ports:
       - 9000:9000
 

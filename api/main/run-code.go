@@ -14,7 +14,7 @@ import (
 
 // path to /tmp/ folder and its files' names
 const (
-	scripts  = "scripts/"
+	scripts  = "scripts"
 	codeFile = "tmp/code"
 )
 
@@ -60,7 +60,9 @@ func Run(body io.ReadCloser) (stdout, stderr []byte, err error) {
 	// run script
 	cmd.Start()
 	// write to its stdin
-	cmdIn.Write([]byte(reqbody.StdIn))
+	if reqbody.StdIn != "" {
+		cmdIn.Write([]byte(reqbody.StdIn))
+	}
 	cmdIn.Close()
 
 	// Get its stdout, stderr

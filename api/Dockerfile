@@ -9,22 +9,20 @@ RUN curl -fsSL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get install -y nodejs
 
 
-# ENV GO111MODULE=on \
-#     CGO_ENABLED=0 \
-#     GOOS=linux \
-#     GOARCH=amd64
-
 WORKDIR /go/src/app
+
 COPY . .
 
-# COPY go.mod .
-# COPY go.sum .
-# RUN go mod download
+WORKDIR /go/src/app/main
 
-RUN go get -d -v ./...
-RUN go install -v ./...
+RUN go mod download
 
-ENV PORT=9000
+RUN go build -o main .
+
+# Export necessary port
 EXPOSE 9000
 
-CMD ["go run ./src"]
+# Command to run when starting the container
+CMD ["/go/src/app/main/main"]
+
+
