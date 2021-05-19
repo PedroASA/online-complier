@@ -1,7 +1,9 @@
 # online-complier
 
-[![Docker Test](https://github.com/PedroASA/online-complier/actions/workflows/docker-test.yml/badge.svg)](https://github.com/PedroASA/online-complier/actions/workflows/docker-test.yml)
+[![Docker Tests](https://github.com/PedroASA/online-complier/actions/workflows/docker-test.yml/badge.svg)](https://github.com/PedroASA/online-complier/actions/workflows/docker-test.yml)
 [![Node.js CI](https://github.com/PedroASA/online-complier/actions/workflows/node.js.yml/badge.svg)](https://github.com/PedroASA/online-complier/actions/workflows/node.js.yml)
+
+[![Go Tests](https://github.com/PedroASA/online-complier/actions/workflows/node.js.yml/badge.svg)](https://github.com/PedroASA/online-complier/actions/workflows/go.yml)
 
 <img align="right" src="sample.gif" height="375px">
 
