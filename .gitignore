@@ -24,8 +24,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-/api/tmp/*
-!/api/tmp/README.md
+/api/main/tmp/*
+!/apimain//tmp/README.md
 .vscode/*
 
 # Ignore GO files
