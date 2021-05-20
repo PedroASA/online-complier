@@ -51,7 +51,7 @@ docker-compose --profile test up --abort-on-container-exit
   The app was created using [create-react-app](https://create-react-app.dev/docs/getting-started/).
 
 - ### ~~Express~~ GO
-  On the back-end, there is a single _"view"_ ~~express~~ go server that either executes the requested code __(POST)__ or informs the current supported language modes for the editor/compiler __(GET)__.
+  On the back-end, there is a single _"view"_ ~~express~~ **Go** server that either executes the requested code __(POST)__ or informs the current supported language modes for the editor/compiler __(GET)__.
 
 - ### Docker
   The whole app is shipped with docker in two containers (__client__ and __api__). <br>
@@ -75,6 +75,6 @@ docker-compose --profile test up --abort-on-container-exit
 - ### CI
   To continuosly integrate the app, three actions are executed on push and on pull-request to the main branch. <br>
   The [first](https://github.com/PedroASA/online-complier/blob/main/.github/workflows/node.js.yml) runs the front-end unit tests on a node enviroment. <br>
-  The [second](https://github.com/PedroASA/online-complier/blob/main/.github/workflows/docker-test.yml) runs the end-to-end tests on docker enviroment. 
+  The [second](https://github.com/PedroASA/online-complier/blob/main/.github/workflows/docker-test.yml) runs the end-to-end tests on docker enviroment. <br>
   The [third](https://github.com/PedroASA/online-complier/blob/main/.github/workflows/go.yml) runs the api unit tests on a go enviroment.
 
