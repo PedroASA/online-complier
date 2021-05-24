@@ -64,7 +64,7 @@ export class Jumb extends React.Component {
                         <Col> <h1> Online Code Editor </h1> </Col>
                     </Row>
                     <Row id="img">
-                        <Col> <Image src="logo192.png" /> </Col>
+                        <Col> <Image className="App-logo" src="logo192.png" /> </Col>
                     </Row>
                     <Row>
                         <Col>  
