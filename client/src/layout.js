@@ -6,8 +6,6 @@
 import React, { useState } from 'react'
 import {
   Container,
-  Navbar,
-  Nav,
   Button,
   Image,
   Jumbotron,
@@ -19,32 +17,6 @@ import {
   Form
 } from 'react-bootstrap'
 
-
-
-// A navbar that sticks on the top of the window.
-export class MyNav extends React.Component {
-    
-    constructor (props) {
-        super(props);
-        this.handleChange = this.handleChange.bind(this);
-    }
-      
-    handleChange = this.props.onBtnClick;
-
-    render() {
-        return (
-               <Row> <Navbar bg="dark" variant="dark" fixed="top" fluid="true">
-                    <Navbar.Brand href="#home"> Online Editor </Navbar.Brand>
-                    <Nav>
-                        <Nav.Item>
-                            <Nav.Link id="home-link" onClick={this.handleChange} > Home  </Nav.Link>
-                        </Nav.Item>
-                    </Nav>
-                </Navbar>
-                </Row>
-        )
-    }
-};
 
 // A jumbotron to quickly present the app.  
 export class Jumb extends React.Component {
