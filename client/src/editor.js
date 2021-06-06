@@ -32,8 +32,8 @@ class Editor extends React.Component {
     super(props);
     this.state = {
       modes  : {'javascript' : ['// Type your code here!', 'js']},
-      mode   : 'javascript',
-      code   : '// Type your code here!',
+      mode   : props.mode || 'javascript',
+      code   : props.code || '// Type your code here!',
       stdIn  : "",
       stdOut : "",
       stdErr : "",
@@ -140,7 +140,7 @@ class Editor extends React.Component {
                 stdIn: e.target.value
               }))
             } }
-            disabled= {this.state.modes[this.state.mode].length === 1}
+            disabled= {!this.state.modes[this.state.mode] || this.state.modes[this.state.mode].length === 1}
             stdOut={this.state.stdOut} 
             stdErr={this.state.stdErr} 
             defKey={this.state.defKey}  />

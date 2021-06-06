@@ -127,3 +127,13 @@ html {
   flex-direction: column;
   align-items: center;
 }
+
+.App .row {
+  margin-bottom: 0px;
+}
+
+#fileList {
+  color: black;
+  justify-content: center;
+  margin-top: 5vw;
+}
